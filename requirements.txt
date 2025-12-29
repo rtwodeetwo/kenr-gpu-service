@@ -1,0 +1,31 @@
+# KENR GPU Service Dependencies
+# For TransformerLens + SAELens based interpretability
+
+# Core
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+pydantic>=2.0.0
+python-dotenv>=1.0.0
+
+# RunPod Serverless
+runpod>=1.6.0
+
+# ML/Deep Learning
+torch>=2.1.0
+transformers>=4.37.0
+accelerate>=0.26.0
+safetensors>=0.4.0
+
+# Interpretability
+transformer-lens>=1.14.0
+sae-lens>=3.0.0
+einops>=0.7.0
+jaxtyping>=0.2.25
+
+# Hugging Face
+huggingface-hub>=0.20.0
+
+# Utilities
+httpx>=0.26.0
+tenacity>=8.2.0
+numpy>=1.24.0
