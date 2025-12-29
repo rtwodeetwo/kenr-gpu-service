@@ -1,7 +1,7 @@
 # KENR GPU Service Dockerfile
 # For deployment to RunPod Serverless
 
-FROM runpod/pytorch:2.1.0-py3.10-cuda12.1.0-devel-ubuntu22.04
+FROM runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-ubuntu22.04
 
 WORKDIR /app
 
