@@ -160,3 +160,4 @@ kenr-gpu-service/
 | Heavy Research | ~$50-100 |
 
 Costs are based on RunPod Serverless pricing (~$0.00031/second for A100 40GB).
+# Trigger rebuild
