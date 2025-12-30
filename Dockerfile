@@ -8,6 +8,7 @@ WORKDIR /app
 # Set environment variables
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONPATH=/app
 ENV HF_HOME=/runpod-volume/models
 ENV TRANSFORMERS_CACHE=/runpod-volume/models
 ENV TORCH_HOME=/runpod-volume/models
