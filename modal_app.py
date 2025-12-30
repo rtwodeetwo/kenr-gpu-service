@@ -5,7 +5,7 @@ This replaces the RunPod serverless handler with Modal's simpler deployment mode
 Deploy with: modal deploy modal_app.py
 Test locally with: modal run modal_app.py
 
-Version: 2025-12-30-fix-deprecations
+Version: 2025-12-30-fix-response-format
 """
 
 import modal
@@ -270,7 +270,7 @@ class GPUService:
             _, cache = self._model.run_with_cache(tokens)
 
         # Extract features for each token
-        features_by_token = []
+        token_features = []
 
         for pos, str_token in enumerate(str_tokens):
             all_features = []
@@ -300,7 +300,7 @@ class GPUService:
                         desc = f"Feature L{lyr}:{idx}" if include_descriptions else None
                         all_features.append({
                             "layer": lyr,
-                            "index": idx,
+                            "feature_index": idx,  # KENR client expects feature_index, not index
                             "activation": val,
                             "description": desc,
                         })
@@ -308,18 +308,21 @@ class GPUService:
             # Sort and take top-k across all layers
             all_features.sort(key=lambda x: x["activation"], reverse=True)
 
-            features_by_token.append({
+            # KENR client expects "features" key, not "top_features"
+            token_features.append({
                 "token": str_token,
                 "position": pos,
-                "top_features": all_features[:k],
+                "features": all_features[:k],
             })
 
         processing_time_ms = int((time.time() - start_time) * 1000)
 
+        # Return format matching KENR GPUTopKResponse schema
         return {
             "model_id": model_id,
+            "layer": layers[0],  # Primary layer used
             "tokens": list(str_tokens),
-            "features_by_token": features_by_token,
+            "token_features": token_features,  # KENR expects token_features, not features_by_token
             "processing_time_ms": processing_time_ms,
         }
 
