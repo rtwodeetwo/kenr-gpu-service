@@ -12,12 +12,12 @@ runpod>=1.6.0
 
 # ML/Deep Learning
 torch>=2.1.0
-transformers>=4.37.0
+transformers>=4.37.0,<4.46.0  # Pin to avoid BertForPreTraining import issue
 accelerate>=0.26.0
 safetensors>=0.4.0
 
 # Interpretability
-transformer-lens>=1.14.0
+transformer-lens>=2.0.0  # Updated for transformers compatibility
 sae-lens>=3.0.0
 einops>=0.7.0
 jaxtyping>=0.2.25
