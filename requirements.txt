@@ -11,7 +11,8 @@ python-dotenv>=1.0.0
 runpod>=1.6.0
 
 # ML/Deep Learning
-torch>=2.1.0
+# Note: torch and torchvision are provided by the RunPod base image (pytorch:2.4.0)
+# Do NOT install them here - it causes version conflicts with torchvision operators
 transformers>=4.37.0,<4.46.0  # Pin to avoid BertForPreTraining import issue
 accelerate>=0.26.0
 safetensors>=0.4.0
